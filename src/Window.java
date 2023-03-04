@@ -2,13 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame {
-    private JPanel contentPanel;
-    private Sound sound;
+    private final JPanel CONTENT_PANEL;
     private Timer timer;
     private boolean playing;
 
     public Window() {
-        contentPanel = new JPanel();
+        CONTENT_PANEL = new JPanel();
         init();
         pack();
     }
@@ -18,21 +17,21 @@ public class Window extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Interval Timer");
         GridBagConstraints gbc = new GridBagConstraints();
-        contentPanel.setLayout(new GridBagLayout());
+        CONTENT_PANEL.setLayout(new GridBagLayout());
 
         JLabel lblTime = new JLabel("Time:");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        contentPanel.add(lblTime, gbc);
+        CONTENT_PANEL.add(lblTime, gbc);
 
         JTextField txtTime = new JTextField("");
         txtTime.setPreferredSize(new Dimension(100, 40));
         gbc.gridx = 1;
-        contentPanel.add(txtTime, gbc);
+        CONTENT_PANEL.add(txtTime, gbc);
 
         JComboBox<String> cmbTime = new JComboBox<>(new String[]{"ms", "s"});
         gbc.gridx = 2;
-        contentPanel.add(cmbTime, gbc);
+        CONTENT_PANEL.add(cmbTime, gbc);
 
         JButton btnStart = new JButton("Start");
 
@@ -56,10 +55,8 @@ public class Window extends JFrame {
         btnStart.setPreferredSize(new Dimension(100, 40));
         gbc.gridx = 1;
         gbc.gridy = 1;
-        contentPanel.add(btnStart, gbc);
-
-        add(contentPanel);
-
+        CONTENT_PANEL.add(btnStart, gbc);
+        add(CONTENT_PANEL);
     }
 
     private void play(int interval, int unitIndex) {
@@ -73,7 +70,6 @@ public class Window extends JFrame {
         } catch (NumberFormatException e) {
             return false;
         }
-        return true;
+        return Integer.parseInt(text) > 0;
     }
-
 }

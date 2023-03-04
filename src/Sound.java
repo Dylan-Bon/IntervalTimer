@@ -19,7 +19,7 @@ public class Sound extends Thread {
 
             setPlaying(true);
 
-            Thread.sleep(100);
+            Thread.sleep(clip.getFrameLength());
             clip.close();
 
         } catch (Exception e) {
